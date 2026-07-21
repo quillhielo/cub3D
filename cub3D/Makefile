@@ -6,7 +6,7 @@
 #    By: quill <quill@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/07/19 16:50:54 by quill             #+#    #+#              #
-#    Updated: 2026/07/20 17:16:20 by quill            ###   ########.fr        #
+#    Updated: 2026/07/21 12:40:12 by quill            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,8 +14,8 @@ NAME = cub3d
 
 CC = gcc
 
-CFLAGS = -Wall -Wextra -Werror -I inc -I inc/libft -I mlx
-LFLAGS = -L inc/libft -lft -L mlx -lmlx -lXext -lX11
+CFLAGS = -Wall -Wextra -Werror -I inc -I inc/libft -I inc/get_next_line -I mlx
+LFLAGS = -L inc/get_next_line -lget_next_line -L inc/libft -lft -L mlx -lmlx -lXext -lX11
 
 SRCDIR = src
 OBJDIR = objs
@@ -25,15 +25,20 @@ SRC = $(SRCDIR)/main.c
 OBJS = $(patsubst $(SRCDIR)/%.c, $(OBJDIR)/%.o, $(SRC))
 
 LIBFT_DIR = inc/libft
+GNL_DIR = inc/get_next_line
 MLX_DIR = mlx
 
 LIBFT_A = $(LIBFT_DIR)/libft.a
+GNL_A   = $(GNL_DIR)/libget_next_line.a
 MLX_A = $(MLX_DIR)/libmlx.a
 
-all: $(OBJDIR) $(LIBFT_A) $(MLX_A) $(NAME)
+all: $(OBJDIR) $(LIBFT_A) $(GNL) $(MLX_A) $(NAME)
 
 $(LIBFT_A):
 	@make -C $(LIBFT_DIR)
+
+$(GNL_A):
+	@make -C $(GNL_DIR)
 
 $(MLX_A):
 	@make -C $(MLX_DIR)
@@ -49,11 +54,13 @@ $(OBJDIR)/%.o: $(SRCDIR)/%.c
 
 clean:
 	make -C $(LIBFT_DIR) clean
+	make -C $(GNL_DIR) clean
 	make -C $(MLX_DIR) clean
 	rm -rf $(OBJDIR)
 
 fclean: clean
 	make -C $(LIBFT_DIR) fclean
+	make -C $(GNL_DIR) fclean
 	rm -f $(NAME)
 
 re: fclean all
