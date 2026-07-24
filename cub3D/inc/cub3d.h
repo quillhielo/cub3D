@@ -6,7 +6,7 @@
 /*   By: quill <quill@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/21 10:33:21 by quill             #+#    #+#             */
-/*   Updated: 2026/07/21 14:38:48 by quill            ###   ########.fr       */
+/*   Updated: 2026/07/24 18:51:18 by quill            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 #include <math.h> //sin, cos, tan, sqrt
 #include "mlx.h" //mlx functions
 #include "libft.h" //libft functions (permitted?)
+#include "get_next_line.h"
 
 # define W_KEY 119
 # define S_KEY 115
@@ -30,6 +31,13 @@
 # define RIGHT_ARROW_KEY 65363
 # define ESC_KEY 65307
 
+typedef enum e_line_type
+{
+	EMPTY,
+	CONFIG,
+	MAP,
+	INVALID
+}	t_line_type;
 
 typedef struct  s_floor
 {
@@ -82,5 +90,15 @@ typedef struct s_framewokr
     char **config;
     t_game *game;
 } t_framework;
+
+void    error_message(char *str);
+void    parse_argv(int argc, char **argv, t_framework *fw);
+int     is_map_line(char *line);
+int     is_config_line(char *line);
+int     find_map_start(t_framework *fw);
+void    copy_map(t_framework *fw, int start_index);
+void    copy_config(t_framework *fw, int end_index);
+void    tidy_content(t_framework *fw);
+void    get_content(int fd, t_framework *fw);
 
 #endif

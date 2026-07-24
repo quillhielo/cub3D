@@ -6,7 +6,7 @@
 #    By: quill <quill@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/07/19 16:50:54 by quill             #+#    #+#              #
-#    Updated: 2026/07/21 12:40:12 by quill            ###   ########.fr        #
+#    Updated: 2026/07/24 18:49:46 by quill            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ LFLAGS = -L inc/get_next_line -lget_next_line -L inc/libft -lft -L mlx -lmlx -lX
 SRCDIR = src
 OBJDIR = objs
 
-SRC = $(SRCDIR)/main.c
+SRC = $(SRCDIR)/main.c $(SRCDIR)/parsing/get_content.c $(SRCDIR)/parsing/get_content_utils.c $(SRCDIR)/utils/exit_utils.c
 
 OBJS = $(patsubst $(SRCDIR)/%.c, $(OBJDIR)/%.o, $(SRC))
 
@@ -32,7 +32,7 @@ LIBFT_A = $(LIBFT_DIR)/libft.a
 GNL_A   = $(GNL_DIR)/libget_next_line.a
 MLX_A = $(MLX_DIR)/libmlx.a
 
-all: $(OBJDIR) $(LIBFT_A) $(GNL) $(MLX_A) $(NAME)
+all: $(OBJDIR) $(LIBFT_A) $(GNL_A) $(MLX_A) $(NAME)
 
 $(LIBFT_A):
 	@make -C $(LIBFT_DIR)
@@ -50,6 +50,7 @@ $(OBJDIR):
 	@mkdir -p $(OBJDIR)
 	
 $(OBJDIR)/%.o: $(SRCDIR)/%.c
+	@mkdir -p $(dir $@)
 	$(CC) $(CFLAGS)  -c $< -o $@
 
 clean:
