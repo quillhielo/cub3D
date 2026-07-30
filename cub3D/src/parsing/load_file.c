@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_content.c                                      :+:      :+:    :+:   */
+/*   load_file.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: quill <quill@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/24 18:08:38 by quill             #+#    #+#             */
-/*   Updated: 2026/07/24 18:52:33 by quill            ###   ########.fr       */
+/*   Updated: 2026/07/26 12:23:35 by quill            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void tidy_content(t_framework *fw)
+void split_content(t_framework *fw)
 {
     int start_map;
 
@@ -50,7 +50,7 @@ void	get_content(int fd, t_framework *fw)
     tidy_content(fw);
 }
 
-void	parse_argv(int argc, char **argv, t_framework *fw)
+void	load_file(int argc, char **argv, t_framework *fw)
 {
 	int len;
 	int fd;

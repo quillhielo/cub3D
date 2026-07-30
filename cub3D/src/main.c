@@ -7,7 +7,7 @@ t_framework *parser(int argc, char **argv)
 	fw = ft_calloc(1, sizeof(t_framework));
 	if (!fw)
 		error_message("Memory allocation failed");
-	parse_argv(argc, argv, fw);
+	load_file(argc, argv, fw);
 	return (fw);
 }
 

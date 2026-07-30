@@ -6,7 +6,7 @@
 /*   By: quill <quill@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/21 10:33:21 by quill             #+#    #+#             */
-/*   Updated: 2026/07/24 18:51:18 by quill            ###   ########.fr       */
+/*   Updated: 2026/07/26 12:20:19 by quill            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ typedef struct s_framewokr
 } t_framework;
 
 void    error_message(char *str);
-void    parse_argv(int argc, char **argv, t_framework *fw);
+void    load_file(int argc, char **argv, t_framework *fw);
 int     is_map_line(char *line);
 int     is_config_line(char *line);
 int     find_map_start(t_framework *fw);
