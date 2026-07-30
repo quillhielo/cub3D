@@ -6,7 +6,7 @@
 /*   By: quill <quill@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/21 10:33:21 by quill             #+#    #+#             */
-/*   Updated: 2026/07/26 12:20:19 by quill            ###   ########.fr       */
+/*   Updated: 2026/07/30 13:28:11 by quill            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,57 +39,75 @@ typedef enum e_line_type
 	INVALID
 }	t_line_type;
 
-typedef struct  s_floor
+typedef struct s_color
 {
-    int rgb_1;
-    int rgb_2;
-}t_floor;
+	int	r;
+	int	g;
+	int	b;
+}	t_color;
 
-typedef struct s_ceiling
+typedef struct s_img
 {
-    int rgb_1;
-    int rgb_2;
-}t_ceiling;
+	void	*img;
+	char	*addr;
+	int		bpp;
+	int		line_length;
+	int		endian;
+}	t_img;
 
-typedef struct s_images
+typedef struct s_images//alberto
 {
-    void    *wall_north;
-    void    *wall_south;
-    void    *wall_east;
-    void    *wall_west;
-    
-}t_images;
+	t_img	north;
+	t_img	south;
+	t_img	east;
+	t_img	west;
+}	t_images;
 
 typedef struct s_map
 {
-    
-}t_map;
+	char	**grid;
+	int		width;
+	int		height;
+}	t_map;
 
 typedef struct s_player
 {
-    float   x;
-    float   y;
-    float   angle;
-} t_player;
+	double	x;
+	double	y;
+	double	angle;
+}	t_player;
 
 typedef struct s_game
 {
-    char        *content;
-    t_map       *map;
-    t_images    *images;
-    t_floor      *floor;
-    t_ceiling    *ceiling;
-    t_player     *player;
-    
-}t_game;
+	t_map		map;
+	t_images	images;
+	t_color		floor;
+	t_color		ceiling;
+	t_player	player;
+}	t_game;
 
-typedef struct s_framewokr
+typedef struct s_mlx//alberto
 {
-    char **content;
-    char **map;
-    char **config;
-    t_game *game;
-} t_framework;
+	void	*mlx;
+	void	*win;
+
+	t_img	frame;
+}	t_mlx;
+
+typedef struct s_framework
+{
+	/* Temporal info*/
+	char	**content;
+	char	**config;
+	char	**map;
+
+	/* end data */
+	t_game	game;
+
+	/* graphic motor*/
+	t_mlx	mlx;
+
+}	t_framework;
 
 void    error_message(char *str);
 void    load_file(int argc, char **argv, t_framework *fw);
@@ -101,4 +119,4 @@ void    copy_config(t_framework *fw, int end_index);
 void    tidy_content(t_framework *fw);
 void    get_content(int fd, t_framework *fw);
 
-#endif
+#endift
