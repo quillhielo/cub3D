@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: albegar2 <albegar2@student.42.fr>          +#+  +:+       +#+         #
+#    By: quill <quill@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/12 14:17:46 by acarbajo          #+#    #+#              #
-#    Updated: 2026/03/26 18:25:13 by albegar2         ###   ########.fr        #
+#    Updated: 2026/08/05 17:32:27 by quill            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ SRCS = ft_isprint.c ft_putendl_fd.c ft_strjoin.c ft_strtrim.c \
        ft_isalpha.c ft_memmove.c ft_strchr.c ft_strncmp.c \
        ft_isascii.c ft_memset.c ft_strdup.c ft_strnstr.c \
        ft_isdigit.c ft_putchar_fd.c ft_striteri.c ft_strrchr.c ft_split.c \
-       ft_strcmp.c \
+       ft_strcmp.c ft_free_matrix.c \
 
 OBJS = $(SRCS:.c=.o)
 

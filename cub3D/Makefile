@@ -6,7 +6,7 @@
 #    By: quill <quill@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/07/19 16:50:54 by quill             #+#    #+#              #
-#    Updated: 2026/07/26 12:21:30 by quill            ###   ########.fr        #
+#    Updated: 2026/08/21 16:20:34 by quill            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,8 +20,8 @@ LFLAGS = -L inc/get_next_line -lget_next_line -L inc/libft -lft -L mlx -lmlx -lX
 SRCDIR = src
 OBJDIR = objs
 
-SRC = $(SRCDIR)/main.c $(SRCDIR)/parsing/load_file.c $(SRCDIR)/parsing/load_file_utils.c $(SRCDIR)/utils/exit_utils.c
-
+SRC = $(SRCDIR)/main.c $(SRCDIR)/parsing/load_file.c $(SRCDIR)/parsing/load_file_utils.c $(SRCDIR)/utils/exit_utils.c \
+		$(SRCDIR)/parsing/parse_config.c
 OBJS = $(patsubst $(SRCDIR)/%.c, $(OBJDIR)/%.o, $(SRC))
 
 LIBFT_DIR = inc/libft

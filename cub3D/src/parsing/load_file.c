@@ -6,7 +6,7 @@
 /*   By: quill <quill@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/24 18:08:38 by quill             #+#    #+#             */
-/*   Updated: 2026/07/26 12:23:35 by quill            ###   ########.fr       */
+/*   Updated: 2026/08/04 16:07:16 by quill            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	get_content(int fd, t_framework *fw)
 	free(l_line);
 	if (!fw->content)
 		error_message("Split failed");
-    tidy_content(fw);
+    split_content(fw);
 }
 
 void	load_file(int argc, char **argv, t_framework *fw)

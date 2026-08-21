@@ -6,7 +6,7 @@
 /*   By: quill <quill@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/21 10:33:21 by quill             #+#    #+#             */
-/*   Updated: 2026/07/30 13:28:11 by quill            ###   ########.fr       */
+/*   Updated: 2026/08/21 16:18:35 by quill            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ typedef struct s_color
 	int	r;
 	int	g;
 	int	b;
+	int	set;
 }	t_color;
 
 typedef struct s_img
@@ -55,8 +56,13 @@ typedef struct s_img
 	int		endian;
 }	t_img;
 
-typedef struct s_images//alberto
+typedef struct s_images
 {
+	char	*no_path;
+	char	*so_path;
+	char	*we_path;
+	char	*ea_path;
+
 	t_img	north;
 	t_img	south;
 	t_img	east;
@@ -116,7 +122,12 @@ int     is_config_line(char *line);
 int     find_map_start(t_framework *fw);
 void    copy_map(t_framework *fw, int start_index);
 void    copy_config(t_framework *fw, int end_index);
-void    tidy_content(t_framework *fw);
+void	split_content(t_framework *fw);
 void    get_content(int fd, t_framework *fw);
+int    parse_texture(t_framework *fw, char *line);
+void	parse_color(t_color *color, char *line);
+void	is_valid_colors(char **colors);
+void	check_config_complete(t_framework *fw);
+void	parse_config(t_framework *fw);
 
-#endift
+#endif
