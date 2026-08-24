@@ -109,6 +109,7 @@ typedef struct s_framework
 
 }	t_framework;
 
+//parsing
 void    error_message(char *str);
 void    load_file(int argc, char **argv, t_framework *fw);
 int     is_map_line(char *line);
@@ -118,5 +119,14 @@ void    copy_map(t_framework *fw, int start_index);
 void    copy_config(t_framework *fw, int end_index);
 void    tidy_content(t_framework *fw);
 void    get_content(int fd, t_framework *fw);
+//exec
+int 	init_exec(t_framework *fw);
+int		init_mlx(t_framework *fw);
+int		run_mlx(t_framework *fw);
+void	put_pixel(t_img *image, int x, int y, int color);
+void	render_frame(t_framework *fw);
+int		close_game(t_framework *fw);
+int		key_press(int keycode, t_framework *fw);
+int		rgb_to_int(t_color color);
 
-#endift
+#endif

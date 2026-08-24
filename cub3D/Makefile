@@ -20,8 +20,12 @@ LFLAGS = -L inc/get_next_line -lget_next_line -L inc/libft -lft -L mlx -lmlx -lX
 SRCDIR = src
 OBJDIR = objs
 
-SRC = $(SRCDIR)/main.c $(SRCDIR)/parsing/load_file.c $(SRCDIR)/parsing/load_file_utils.c $(SRCDIR)/utils/exit_utils.c
-
+SRC = $(SRCDIR)/main.c \
+		$(SRCDIR)/parsing/load_file.c \
+    	$(SRCDIR)/parsing/load_file_utils.c \
+   	 	$(SRCDIR)/utils/exit_utils.c \
+   		$(SRCDIR)/exec/init_exec.c \
+		
 OBJS = $(patsubst $(SRCDIR)/%.c, $(OBJDIR)/%.o, $(SRC))
 
 LIBFT_DIR = inc/libft
