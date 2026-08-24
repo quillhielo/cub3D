@@ -18,7 +18,5 @@ int main(int argc, char **argv)
 	fw = parser(argc, argv);
 	if (!fw)
 		return (0);
-	else
-		init_exec(argc, argv, fw);
 	return (0);
 }
