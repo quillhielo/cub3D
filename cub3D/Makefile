@@ -24,7 +24,10 @@ SRC = $(SRCDIR)/main.c \
 		$(SRCDIR)/parsing/load_file.c \
     	$(SRCDIR)/parsing/load_file_utils.c \
    	 	$(SRCDIR)/utils/exit_utils.c \
-   		$(SRCDIR)/exec/init_exec.c \
+   		$(SRCDIR)/exec/mlx_exec.c \
+		$(SRCDIR)/exec/muletas.c \
+		$(SRCDIR)/exec/raycasting.c \
+		$(SRCDIR)/exec/init_exec.c \
 		
 OBJS = $(patsubst $(SRCDIR)/%.c, $(OBJDIR)/%.o, $(SRC))
 
