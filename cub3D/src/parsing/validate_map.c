@@ -12,10 +12,10 @@
 
 #include "cub3d.h"
 
-void validate_map(t_framework *fw)
+void    validate_map(t_framework *fw);
 
-void    validate_map_chars(t_framework *fw)
+void    validate_map_chars(t_framework *fw);
 
-void    validate_player(t_framework *fw)
+void    validate_player(t_framework *fw);
 
-void    validate_closed_map(t_framework *fw)
+void    validate_closed_map(t_framework *fw);

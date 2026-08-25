@@ -57,10 +57,10 @@ typedef struct s_img
 
 typedef struct s_images//alberto
 {
-	t_img	north;
-	t_img	south;
-	t_img	east;
-	t_img	west;
+	t_img	no_path;
+	t_img	so_path;
+	t_img	ea_path;
+	t_img	we_path;
 }	t_images;
 
 typedef struct s_map
@@ -90,6 +90,8 @@ typedef struct s_mlx//alberto
 {
 	void	*mlx;
 	void	*win;
+	int		WIDTH;
+	int		HEIGHT;
 
 	t_img	frame;
 }	t_mlx;
@@ -128,5 +130,8 @@ void	render_frame(t_framework *fw);
 int		close_game(t_framework *fw);
 int		key_press(int keycode, t_framework *fw);
 int		rgb_to_int(t_color color);
+void	render_raycasting(t_framework *fw);
+//TESTING FUNCTIONS (DELETE LATER)
+void 	testing(t_framework *fw);
 
 #endif
