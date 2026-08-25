@@ -30,6 +30,7 @@
 # define LEFT_ARROW_KEY 65361
 # define RIGHT_ARROW_KEY 65363
 # define ESC_KEY 65307
+# define FOV 1.0471975512
 
 typedef enum e_line_type
 {
@@ -96,6 +97,22 @@ typedef struct s_mlx//alberto
 	t_img	frame;
 }	t_mlx;
 
+typedef struct s_location
+{
+	int		x_pos;
+	int		y_pos;
+} t_location;
+
+typedef struct s_raycast
+{
+	t_location	view;
+	t_location	x;
+	t_location	y;
+	t_location	x_step;
+	t_location	y_step;
+	char		obj;
+}	t_raycast;
+
 typedef struct s_framework
 {
 	/* Temporal info*/
@@ -125,7 +142,7 @@ void    get_content(int fd, t_framework *fw);
 int 	init_exec(t_framework *fw);
 int		init_mlx(t_framework *fw);
 int		run_mlx(t_framework *fw);
-void	put_pixel(t_img *image, int x, int y, int color);
+void	put_pixel(t_framework *fw, int x, int y, int color);
 void	render_frame(t_framework *fw);
 int		close_game(t_framework *fw);
 int		key_press(int keycode, t_framework *fw);
