@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: quill <quill@student.42.fr>                +#+  +:+       +#+        */
+/*   By: albegar2 <albegar2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/21 10:33:21 by quill             #+#    #+#             */
-/*   Updated: 2026/07/30 13:28:11 by quill            ###   ########.fr       */
+/*   Updated: 2026/08/26 21:18:55 by albegar2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,15 @@
 # define W_KEY 119
 # define S_KEY 115
 # define A_KEY 97
-# define D_KEY 100
+# define D_KEY 	100
 # define LEFT_ARROW_KEY 65361
 # define RIGHT_ARROW_KEY 65363
 # define ESC_KEY 65307
-# define FOV 1.0471975512
+# define FOV 	1.0471975512
+# define PI		3.14159265359
+# define WIDTH	3840
+# define HEIGHT	2160
+# define BLOCK	64
 
 typedef enum e_line_type
 {
@@ -91,10 +95,9 @@ typedef struct s_mlx//alberto
 {
 	void	*mlx;
 	void	*win;
-	int		WIDTH;
-	int		HEIGHT;
 
 	t_img	frame;
+
 }	t_mlx;
 
 typedef struct s_location

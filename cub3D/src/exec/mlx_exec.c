@@ -6,15 +6,10 @@ int	init_mlx(t_framework *fw)
 	fw->mlx.mlx = mlx_init();
 	if (!fw->mlx.mlx)
 		return (1);
-	fw->mlx.WIDTH = 1000;
-    fw->mlx.HEIGHT = 500;
-	fw->mlx.win = mlx_new_window(fw->mlx.mlx, fw->mlx.WIDTH, fw->mlx.HEIGHT, "cub3d");
-	if (!fw->mlx.win)
+	fw->mlx.win = mlx_new_window(fw->mlx.mlx, WIDTH, HEIGHT, "cub3d");
+	fw->mlx.frame.img = mlx_new_image(fw->mlx.mlx, WIDTH, HEIGHT);
+	if (!fw->mlx.win || !fw->mlx.frame.img)
 		return (1);
-	fw->mlx.frame.img = mlx_new_image(fw->mlx.mlx, fw->mlx.WIDTH, fw->mlx.HEIGHT);
-	if (!fw->mlx.frame.img)
-		return (1);
-
 	fw->mlx.frame.addr = mlx_get_data_addr(
     fw->mlx.frame.img,
     &fw->mlx.frame.bpp,
@@ -45,6 +40,8 @@ int	key_press(int keycode, t_framework *fw)
 
 int run_mlx(t_framework *fw)
 {
+	if (init_mlx(fw))
+		return (1);
 	render_frame(fw);
     mlx_hook(fw->mlx.win, 2, 1L << 0, key_press, fw);
     mlx_hook(fw->mlx.win, 17, 0, close_game, fw);

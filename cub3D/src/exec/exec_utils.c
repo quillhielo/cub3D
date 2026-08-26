@@ -49,3 +49,12 @@ int	rgb_to_int(t_color color)
     return ((color.r << 16) | (color.g << 8) | color.b);
 }
 
+void	put_pixel(t_framework *fw, int x, int y, int color)
+{
+    char	*dst;
+    if (x < 0 || x >= WIDTH || y < 0 || y >= HEIGHT)
+        return ;
+    dst = fw->mlx.frame.addr + (y * fw->mlx.frame.line_length
+            + x * (fw->mlx.frame.bpp / 8));
+    *(unsigned int *)dst = color;
+}
