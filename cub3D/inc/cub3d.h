@@ -6,7 +6,7 @@
 /*   By: quill <quill@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/21 10:33:21 by quill             #+#    #+#             */
-/*   Updated: 2026/08/21 16:18:35 by quill            ###   ########.fr       */
+/*   Updated: 2026/08/25 17:41:49 by quill            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ typedef struct s_player
 	double	x;
 	double	y;
 	double	angle;
+	char	orientation;
 }	t_player;
 
 typedef struct s_game
