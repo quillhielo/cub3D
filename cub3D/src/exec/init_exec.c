@@ -19,8 +19,8 @@ void	put_pixel(t_framework *fw, int x, int y, int color)
     //VALORES HARDCOREADOS!!
     if (x < 0 || x >= fw->mlx.WIDTH || y < 0 || y >= fw->mlx.HEIGHT)
         return ;
-    dst = image->addr + (y * image->line_length
-            + x * (image->bpp / 8));
+    dst = fw->mlx.frame.addr + (y * fw->mlx.frame.line_length
+            + x * (fw->mlx.frame.bpp / 8));
     *(unsigned int *)dst = color;
 }
 
@@ -35,10 +35,10 @@ void	render_frame(t_framework *fw)
         x = 0;
         while (x < fw->mlx.WIDTH)
         {
-            if (y < 540)
-                put_pixel(&fw->mlx.frame, x, y, rgb_to_int(fw->);
+            if (y < fw->mlx.HEIGHT / 2)
+                put_pixel(fw, x, y, rgb_to_int(fw->game.ceiling));
             else
-                put_pixel(&fw->mlx.frame, x, y, fw);
+                put_pixel(fw, x, y, rgb_to_int(fw->game.floor));
             x++;
         }
         y++;

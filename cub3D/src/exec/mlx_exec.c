@@ -15,7 +15,6 @@ int	init_mlx(t_framework *fw)
 	if (!fw->mlx.frame.img)
 		return (1);
 
-
 	fw->mlx.frame.addr = mlx_get_data_addr(
     fw->mlx.frame.img,
     &fw->mlx.frame.bpp,
