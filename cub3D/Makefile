@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: quill <quill@student.42.fr>                +#+  +:+       +#+         #
+#    By: albegar2 <albegar2@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/07/19 16:50:54 by quill             #+#    #+#              #
-#    Updated: 2026/07/26 12:21:30 by quill            ###   ########.fr        #
+#    Updated: 2026/08/26 20:46:10 by albegar2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,9 +25,9 @@ SRC = $(SRCDIR)/main.c \
     	$(SRCDIR)/parsing/load_file_utils.c \
    	 	$(SRCDIR)/utils/exit_utils.c \
    		$(SRCDIR)/exec/mlx_exec.c \
-		$(SRCDIR)/exec/muletas.c \
 		$(SRCDIR)/exec/raycasting.c \
 		$(SRCDIR)/exec/init_exec.c \
+		$(SRCDIR)/exec/exec_utils.c \
 		
 OBJS = $(patsubst $(SRCDIR)/%.c, $(OBJDIR)/%.o, $(SRC))
 

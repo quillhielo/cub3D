@@ -11,7 +11,7 @@
 
 NAME = libget_next_line.a
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -I . -I ../libft
+CFLAGS = -Wall -Wextra -Werror -fPIE -I . -I ../libft
 
 SRCS = get_next_line.c  # Agrega get_next_line_utils.c si lo tienes
 OBJS = $(SRCS:.c=.o)
