@@ -6,7 +6,7 @@
 /*   By: quill <quill@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/24 18:11:37 by quill             #+#    #+#             */
-/*   Updated: 2026/07/26 12:24:14 by quill            ###   ########.fr       */
+/*   Updated: 2026/08/30 13:21:06 by quill            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,16 +45,16 @@ void copy_map(t_framework *fw, int start_index)
         if (is_map_line(fw->content[start_index + i]))
             i++;
         else
-            error_message("Invalid line in map");
+            error_message("Invalid line in map", fw);
     }
     fw->map = ft_calloc(i + 1, sizeof(char *));
     if (!fw->map)
-        error_message("Malloc failed");
+        error_message("Malloc failed", fw);
     for (int j = 0; j < i; j++)
     {
         fw->map[j] = ft_strdup(fw->content[start_index + j]);
         if (!fw->map[j])
-            error_message("Malloc failed");
+            error_message("Malloc failed", fw);
     }
 }
 void copy_config(t_framework *fw, int end_index)
@@ -72,7 +72,7 @@ void copy_config(t_framework *fw, int end_index)
     }
     fw->config = ft_calloc(j + 1, sizeof(char *));
     if (!fw->config)
-        error_message("Malloc failed");
+        error_message("Malloc failed", fw);
     j = 0;
     i = 0;
     while(fw->content[i] && i < end_index)
@@ -81,7 +81,7 @@ void copy_config(t_framework *fw, int end_index)
         {
             fw->config[j] = ft_strdup(fw->content[i]);
             if (!fw->config[j])
-                error_message("Malloc failed");
+                error_message("Malloc failed", fw);
             j++;
         }
         i++;

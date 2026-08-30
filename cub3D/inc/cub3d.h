@@ -6,7 +6,7 @@
 /*   By: quill <quill@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/21 10:33:21 by quill             #+#    #+#             */
-/*   Updated: 2026/08/25 17:41:49 by quill            ###   ########.fr       */
+/*   Updated: 2026/08/30 13:32:14 by quill            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ typedef struct s_framework
 
 }	t_framework;
 
-void    error_message(char *str);
+void    error_message(char *str, t_framework *fw);
 void    load_file(int argc, char **argv, t_framework *fw);
 int     is_map_line(char *line);
 int     is_config_line(char *line);
@@ -126,9 +126,17 @@ void    copy_config(t_framework *fw, int end_index);
 void	split_content(t_framework *fw);
 void    get_content(int fd, t_framework *fw);
 int    parse_texture(t_framework *fw, char *line);
-void	parse_color(t_color *color, char *line);
-void	is_valid_colors(char **colors);
+char	*parse_texture_path(char *line, t_framework *fw);
+void	parse_color(t_color *color, char *line, t_framework *fw);
+void	is_valid_colors(char **colors, t_framework *fw);
 void	check_config_complete(t_framework *fw);
 void	parse_config(t_framework *fw);
+void    parse_map(t_framework *fw);
+void    check_map_chars(t_framework *fw);
+void	check_map_closed(t_framework *fw);
+void	check_player(t_framework *fw);
+void	check_cell(t_framework *fw, int i, int j);
+void	check_neighbor(t_framework *fw, int i, int j);
+int		is_walkable(char c);
 
 #endif
