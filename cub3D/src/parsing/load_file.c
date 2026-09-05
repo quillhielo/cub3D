@@ -6,21 +6,21 @@
 /*   By: quill <quill@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/24 18:08:38 by quill             #+#    #+#             */
-/*   Updated: 2026/08/30 13:22:41 by quill            ###   ########.fr       */
+/*   Updated: 2026/09/01 11:12:14 by quill            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void split_content(t_framework *fw)
+void	split_content(t_framework *fw)
 {
-    int start_map;
+	int	start_map;
 
-    start_map = find_map_start(fw);
-    if (start_map == -1)
-        error_message("No valid map", fw);
-    copy_map(fw, start_map);
-    copy_config(fw, start_map);
+	start_map = find_map_start(fw);
+	if (start_map == -1)
+		error_message("No valid map", fw);
+	copy_map(fw, start_map);
+	copy_config(fw, start_map);
 }
 
 void	get_content(int fd, t_framework *fw)
@@ -30,7 +30,7 @@ void	get_content(int fd, t_framework *fw)
 	char	*l_line;
 
 	l_line = ft_strdup("");
-	if(!l_line)
+	if (!l_line)
 		error_message("Malloc failed", fw);
 	line = get_next_line(fd);
 	while (line)
@@ -47,13 +47,13 @@ void	get_content(int fd, t_framework *fw)
 	free(l_line);
 	if (!fw->content)
 		error_message("Split failed", fw);
-    split_content(fw);
+	split_content(fw);
 }
 
 void	load_file(int argc, char **argv, t_framework *fw)
 {
-	int len;
-	int fd;
+	int	len;
+	int	fd;
 
 	if (argc != 2)
 		error_message("Incorrect amount of arguments", 0);

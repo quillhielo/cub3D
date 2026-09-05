@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: quill <quill@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/09/01 10:38:49 by quill             #+#    #+#             */
+/*   Updated: 2026/09/01 11:13:34 by quill            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
-t_framework *parser(int argc, char **argv)
+t_framework	*parser(int argc, char **argv)
 {
 	t_framework	*fw;
 
@@ -11,7 +23,7 @@ t_framework *parser(int argc, char **argv)
 	return (fw);
 }
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	t_framework	*fw;
 
