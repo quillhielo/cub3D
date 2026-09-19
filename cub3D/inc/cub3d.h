@@ -6,7 +6,7 @@
 /*   By: albegar2 <albegar2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/21 10:33:21 by quill             #+#    #+#             */
-/*   Updated: 2026/08/26 21:18:55 by albegar2         ###   ########.fr       */
+/*   Updated: 2026/09/19 15:15:04 by albegar2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ typedef struct s_color
 	int	r;
 	int	g;
 	int	b;
+	int	set;
 }	t_color;
 
 typedef struct s_img
@@ -62,10 +63,10 @@ typedef struct s_img
 
 typedef struct s_images//alberto
 {
-	t_img	no_path;
-	t_img	so_path;
-	t_img	ea_path;
-	t_img	we_path;
+	char	*no_path;
+	char	*so_path;
+	char	*ea_path;
+	char	*we_path;
 }	t_images;
 
 typedef struct s_map
@@ -132,15 +133,29 @@ typedef struct s_framework
 }	t_framework;
 
 //parsing
-void    error_message(char *str);
+void	ft_free_matrix(char **matrix);
+void    error_message(char *str, t_framework *fw);
 void    load_file(int argc, char **argv, t_framework *fw);
 int     is_map_line(char *line);
 int     is_config_line(char *line);
 int     find_map_start(t_framework *fw);
 void    copy_map(t_framework *fw, int start_index);
 void    copy_config(t_framework *fw, int end_index);
-void    tidy_content(t_framework *fw);
+void	split_content(t_framework *fw);
 void    get_content(int fd, t_framework *fw);
+int    parse_texture(t_framework *fw, char *line);
+char	*parse_texture_path(char *line, t_framework *fw);
+void	parse_color(t_color *color, char *line, t_framework *fw);
+void	is_valid_colors(char **colors, t_framework *fw);
+void	check_config_complete(t_framework *fw);
+void	parse_config(t_framework *fw);
+void    parse_map(t_framework *fw);
+void    check_map_chars(t_framework *fw);
+void	check_map_closed(t_framework *fw);
+void	check_player(t_framework *fw);
+void	check_cell(t_framework *fw, int i, int j);
+void	check_neighbor(t_framework *fw, int i, int j);
+int		is_walkable(char c);
 //exec
 int 	init_exec(t_framework *fw);
 int		init_mlx(t_framework *fw);

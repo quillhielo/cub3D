@@ -1,12 +1,12 @@
 #include "cub3d.h"
 
-t_framework *parser(int argc, char **argv)
+t_framework	*parser(int argc, char **argv)
 {
 	t_framework	*fw;
 
 	fw = ft_calloc(1, sizeof(t_framework));
 	if (!fw)
-		error_message("Memory allocation failed");
+		error_message("Memory allocation failed", 0);
 	load_file(argc, argv, fw);
 	return (fw);
 }

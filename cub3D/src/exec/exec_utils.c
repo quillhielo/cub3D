@@ -28,8 +28,8 @@ void testing(t_framework *fw)
     fw->game.player.x = 2.5;
     fw->game.player.y = 2.5;
     fw->game.player.angle = 0.0;
-    fw->game.floor = (t_color){30, 30, 30};
-    fw->game.ceiling = (t_color){100, 150, 220};
+    fw->game.floor = (t_color){30, 30, 30, 1};
+    fw->game.ceiling = (t_color){100, 150, 220, 1};
 }
 
 int	rgb_to_int(t_color color)

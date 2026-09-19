@@ -22,6 +22,11 @@ OBJDIR = objs
 
 SRC = $(SRCDIR)/main.c \
 		$(SRCDIR)/parsing/load_file.c \
+		$(SRCDIR)/parsing/parse_config.c \
+		$(SRCDIR)/parsing/parse_config_utils.c \
+		$(SRCDIR)/parsing/parse_map.c \
+		$(SRCDIR)/parsing/parse_map_utils.c \
+		$(SRCDIR)/parsing/validate_map.c \
     	$(SRCDIR)/parsing/load_file_utils.c \
    	 	$(SRCDIR)/utils/exit_utils.c \
    		$(SRCDIR)/exec/mlx_exec.c \
