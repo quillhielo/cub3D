@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init_exec.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: albegar2 <albegar2@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/09/19 18:34:57 by albegar2          #+#    #+#             */
+/*   Updated: 2026/09/19 18:44:25 by albegar2         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 
@@ -15,31 +27,5 @@ int init_exec(t_framework *fw)
 
 
 
-void	render_frame(t_framework *fw)
-{
-    int	x;
-    int	y;
 
-    y = 0;
-    while (y < HEIGHT)
-    {
-        x = 0;
-        while (x < WIDTH)
-        {
-            if (y < HEIGHT / 2)
-                put_pixel(fw, x, y, rgb_to_int(fw->game.ceiling));
-            else
-                put_pixel(fw, x, y, rgb_to_int(fw->game.floor));
-            x++;
-        }
-        y++;
-    }
-    mlx_put_image_to_window(
-        fw->mlx.mlx,
-        fw->mlx.win,
-        fw->mlx.frame.img,
-        0,
-        0
-    );
-}
 

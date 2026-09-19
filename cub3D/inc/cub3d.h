@@ -6,7 +6,7 @@
 /*   By: albegar2 <albegar2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/21 10:33:21 by quill             #+#    #+#             */
-/*   Updated: 2026/09/19 15:15:04 by albegar2         ###   ########.fr       */
+/*   Updated: 2026/09/19 23:37:27 by albegar2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,20 +101,20 @@ typedef struct s_mlx//alberto
 
 }	t_mlx;
 
-typedef struct s_location
-{
-	int		x_pos;
-	int		y_pos;
-} t_location;
-
 typedef struct s_raycast
 {
-	t_location	view;
-	t_location	x;
-	t_location	y;
-	t_location	x_step;
-	t_location	y_step;
-	char		obj;
+	int			side;
+	int			mapX;
+	int			mapY;
+	int			stepX;
+	int			stepY;
+	double		rayDirX;
+	double		rayDirY;
+	double		deltaDistX;
+	double		deltaDistY;
+	double		sideDistX;
+	double		sideDistY;
+	double		perpendicular;
 }	t_raycast;
 
 typedef struct s_framework
@@ -165,7 +165,13 @@ void	render_frame(t_framework *fw);
 int		close_game(t_framework *fw);
 int		key_press(int keycode, t_framework *fw);
 int		rgb_to_int(t_color color);
+//RAYCASTING
 void	render_raycasting(t_framework *fw);
+void	fisheye(t_raycast *rc);
+void	dda_loop(t_framework *fw, t_raycast *rc);
+void	init_raycasting(t_framework *fw, int col, t_raycast *rc);
+void	cast_ray(t_framework *fw, int col);
+void	draw_column(t_framework *fw, t_raycast *rc, int col);
 //TESTING FUNCTIONS (DELETE LATER)
 void 	testing(t_framework *fw);
 

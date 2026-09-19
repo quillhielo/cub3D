@@ -6,7 +6,7 @@
 #    By: albegar2 <albegar2@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/07/19 16:50:54 by quill             #+#    #+#              #
-#    Updated: 2026/08/26 20:46:10 by albegar2         ###   ########.fr        #
+#    Updated: 2026/09/19 23:39:54 by albegar2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME = cub3d
 CC = gcc
 
 CFLAGS = -Wall -Wextra -Werror -I inc -I inc/libft -I inc/get_next_line -I mlx
-LFLAGS = -L inc/get_next_line -lget_next_line -L inc/libft -lft -L mlx -lmlx -lXext -lX11
+LFLAGS = -L inc/get_next_line -lget_next_line -L inc/libft -lft -L mlx -lm -lmlx -lXext -lX11
 
 SRCDIR = src
 OBJDIR = objs

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   mlx_exec.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: albegar2 <albegar2@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/09/19 18:35:04 by albegar2          #+#    #+#             */
+/*   Updated: 2026/09/19 23:35:28 by albegar2         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 int	init_mlx(t_framework *fw)
@@ -47,4 +59,38 @@ int run_mlx(t_framework *fw)
     mlx_hook(fw->mlx.win, 17, 0, close_game, fw);
 	mlx_loop(fw->mlx.mlx);
 	return (0);
+}
+
+void	render_frame(t_framework *fw)
+{
+    int	x;
+    int	y;
+
+    y = 0;
+    while (y < HEIGHT)
+    {
+        x = 0;
+        while (x < WIDTH)
+        {
+            if (y < HEIGHT / 2)
+                put_pixel(fw, x, y, rgb_to_int(fw->game.ceiling));
+            else
+                put_pixel(fw, x, y, rgb_to_int(fw->game.floor));
+            x++;
+        }
+        y++;
+    }
+	x = 0;
+	while (x <= WIDTH - 1)
+	{
+		cast_ray(fw, x);
+		x++;
+	}
+    mlx_put_image_to_window(
+        fw->mlx.mlx,
+        fw->mlx.win,
+        fw->mlx.frame.img,
+        0,
+        0
+    );
 }
