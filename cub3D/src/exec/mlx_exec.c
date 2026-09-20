@@ -6,32 +6,12 @@
 /*   By: albegar2 <albegar2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/19 18:35:04 by albegar2          #+#    #+#             */
-/*   Updated: 2026/09/20 05:08:39 by albegar2         ###   ########.fr       */
+/*   Updated: 2026/09/20 06:19:24 by albegar2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	init_mlx(t_framework *fw)
-{
-
-	fw->mlx.mlx = mlx_init();
-	if (!fw->mlx.mlx)
-		return (1);
-	fw->mlx.win = mlx_new_window(fw->mlx.mlx, WIDTH, HEIGHT, "cub3d");
-	fw->mlx.frame.img = mlx_new_image(fw->mlx.mlx, WIDTH, HEIGHT);
-	if (!fw->mlx.win || !fw->mlx.frame.img)
-		return (1);
-	fw->mlx.frame.addr = mlx_get_data_addr(
-    fw->mlx.frame.img,
-    &fw->mlx.frame.bpp,
-    &fw->mlx.frame.line_length,
-    &fw->mlx.frame.endian
-	);
-	if (!fw->mlx.frame.addr)
-		return (1);
-	return (0);
-}
 
 int	close_game(t_framework *fw)
 {
@@ -79,18 +59,6 @@ int key_release(int keycode, t_framework *fw)
     return (0);
 }
 
-int run_mlx(t_framework *fw)
-{
-	if (init_mlx(fw))
-		return (1);
-	mlx_loop_hook (fw->mlx.mlx, render_frame, fw);
-    mlx_hook(fw->mlx.win, 2, 1L << 0, key_press, fw);
-    mlx_hook(fw->mlx.win, 3, 1L << 1, key_release, fw);
-    mlx_hook(fw->mlx.win, 17, 0, close_game, fw);
-	mlx_loop(fw->mlx.mlx);
-	return (0);
-}
-
 int render_frame(t_framework *fw)
 {
     int	x;
@@ -128,33 +96,81 @@ int render_frame(t_framework *fw)
 }
 void    move_player(t_framework *fw)
 {
-double	dirX;
+    double	dirX;
 	double	dirY;
+    double	newX;
+	double	newY;
 
 	dirX = cos(fw->game.player.angle);
 	dirY = sin(fw->game.player.angle);
 	if (fw->mlx.keys.w)
 	{
-		fw->game.player.x += dirX * MOVE_SPEED;
-		fw->game.player.y += dirY * MOVE_SPEED;
+        newX = 	fw->game.player.x + dirX * MOVE_SPEED;
+        newY = fw->game.player.y + dirY * MOVE_SPEED;
+        if (!nowall(fw, newX, newY))
+        {
+            fw->game.player.x = newX;
+            fw->game.player.y = newY;
+        }
 	}
 	if (fw->mlx.keys.s)
 	{
-		fw->game.player.x -= dirX * MOVE_SPEED;
-		fw->game.player.y -= dirY * MOVE_SPEED;
+        newX = fw->game.player.x - dirX * MOVE_SPEED;
+        newY = fw->game.player.y - dirY * MOVE_SPEED;
+        if (!nowall(fw, newX, newY))
+        {
+            fw->game.player.x = newX;
+            fw->game.player.y = newY;
+        }
 	}
 	if (fw->mlx.keys.a)
 	{
-		fw->game.player.x += dirY * MOVE_SPEED;
-		fw->game.player.y -= dirX * MOVE_SPEED;
+        newX = fw->game.player.x + dirY * MOVE_SPEED;
+        newY = fw->game.player.y - dirX * MOVE_SPEED;
+        if (!nowall(fw, newX, newY))
+        {
+            fw->game.player.x = newX;
+            fw->game.player.y = newY;
+        }
 	}
 	if (fw->mlx.keys.d)
 	{
-		fw->game.player.x -= dirY * MOVE_SPEED;
-		fw->game.player.y += dirX * MOVE_SPEED;
+        newX = fw->game.player.x - dirY * MOVE_SPEED;
+        newY = fw->game.player.y + dirX * MOVE_SPEED;
+        if (!nowall(fw, newX, newY))
+        {
+		    fw->game.player.x = newX;
+            fw->game.player.y = newY;
+        }
 	}
 	if (fw->mlx.keys.right)
 		fw->game.player.angle += ROT_SPEED;
 	if (fw->mlx.keys.left)
 		fw->game.player.angle -= ROT_SPEED;  
+}
+
+int nowall(t_framework *fw, double newX, double newY)
+{
+    if (is_walkable(fw->game.map.grid[(int)newY][(int)newX]))
+        return (0);
+    return (1);
+}
+
+t_img	*get_wall_texture(t_framework *fw, t_raycast *rc)
+{
+    if (rc->side == 0)
+    {
+        if (rc->rayDirX > 0)
+        return (&fw->game.images.we_img);
+        else if (rc->rayDirX < 0)
+            return (&fw->game.images.ea_img);
+    }
+    else
+    {
+        if (rc->rayDirY > 0)
+            return (&fw->game.images.so_img);
+        else if (rc->rayDirY < 0)
+            return (&fw->game.images.no_img);
+    }
+    return (NULL);
 }

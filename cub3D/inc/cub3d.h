@@ -6,7 +6,7 @@
 /*   By: albegar2 <albegar2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/21 10:33:21 by quill             #+#    #+#             */
-/*   Updated: 2026/09/20 05:09:59 by albegar2         ###   ########.fr       */
+/*   Updated: 2026/09/20 06:29:13 by albegar2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@
 # define WIDTH	3840
 # define HEIGHT	2160
 # define BLOCK	64
-# define ROT_SPEED 0.05
-# define MOVE_SPEED 0.05
+# define ROT_SPEED 0.08
+# define MOVE_SPEED 0.08
 
 typedef enum e_line_type
 {
@@ -61,6 +61,8 @@ typedef struct s_img
 	int		bpp;
 	int		line_length;
 	int		endian;
+	int		width;
+	int		height;
 }	t_img;
 
 typedef struct s_images//alberto
@@ -69,6 +71,10 @@ typedef struct s_images//alberto
 	char	*so_path;
 	char	*ea_path;
 	char	*we_path;
+	t_img	no_img;
+	t_img	so_img;
+	t_img   ea_img;
+	t_img   we_img;
 }	t_images;
 
 typedef struct s_map
@@ -179,6 +185,10 @@ int		key_press(int keycode, t_framework *fw);
 int 	key_release(int keycode, t_framework *fw);
 int		rgb_to_int(t_color color);
 void    move_player(t_framework *fw);
+int 	nowall(t_framework *fw, double newX, double newY);
+int		load_texture(t_framework *fw, char *path, t_img *img);
+int 	load_all_textures(t_framework *fw);
+t_img	*get_wall_texture(t_framework *fw, t_raycast *rc);
 //RAYCASTING
 void	render_raycasting(t_framework *fw);
 void	fisheye(t_raycast *rc);
@@ -186,7 +196,8 @@ int		dda_loop(t_framework *fw, t_raycast *rc);
 void	init_raycasting(t_framework *fw, int col, t_raycast *rc);
 void	cast_ray(t_framework *fw, int col);
 void	draw_column(t_framework *fw, t_raycast *rc, int col);
-//TESTING FUNCTIONS (DELETE LATER)
-void 	testing(t_framework *fw);
+double	get_wall_x(t_framework *fw, t_raycast *rc);
+int		get_tex_x(double wallX, t_img *texture);
+int		get_tex_pixel(t_img *texture, int x, int y);
 
 #endif

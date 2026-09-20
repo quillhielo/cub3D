@@ -6,7 +6,7 @@
 /*   By: albegar2 <albegar2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/19 18:35:14 by albegar2          #+#    #+#             */
-/*   Updated: 2026/09/20 04:41:18 by albegar2         ###   ########.fr       */
+/*   Updated: 2026/09/20 07:23:36 by albegar2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,21 +24,44 @@ void	cast_ray(t_framework *fw, int col)
 	}
 }
 
+int	get_tex_pixel(t_img *texture, int x, int y)
+{
+	char	*pixel;
+
+	pixel = texture->addr + (y * texture->line_length + x * (texture->bpp / 8));
+	return (*(unsigned int *)pixel);
+}
+
 void	draw_column(t_framework *fw, t_raycast *rc, int col)
 {
 	int lineHeight;
 	int	drawStart;
 	int	drawEnd;
-	int	y;
-
+	int	texY;
+	int	texX;
+	int y;
+	int color;
+	double wallX;
+	double step;
+	double texPos;
+	t_img	*img;
+	
 	lineHeight = (double)HEIGHT / rc->perpendicular;
 	drawStart = (HEIGHT / 2) - (lineHeight / 2);
 	drawEnd = (HEIGHT / 2) + (lineHeight / 2);
+	img = get_wall_texture(fw, rc);
+	step = (double)img->height / lineHeight;
+	texPos = (drawStart - HEIGHT / 2 + lineHeight / 2) * step;
+	wallX = get_wall_x(fw, rc);
+	texX = get_tex_x(wallX, img);
 	y = drawStart;
 	while (y < drawEnd)
 	{
-		put_pixel(fw, col, y, 0xFF0000);
+		texY = (int)texPos;
+		color = get_tex_pixel(img, texX, texY);
+		put_pixel(fw, col, y, color);
 		y++;
+		texPos += step;
 	}
 }
 
@@ -119,4 +142,28 @@ void	fisheye(t_raycast *rc)
 		rc->perpendicular = rc->sideDistX - rc->deltaDistX;
 	else
 		rc->perpendicular = rc->sideDistY - rc->deltaDistY;
+}
+
+double	get_wall_x(t_framework *fw, t_raycast *rc)
+{
+	double	wallHitX;
+	double	wallHitY;
+	double	wallX;
+
+	wallHitX = fw->game.player.x + rc->perpendicular * rc->rayDirX;
+	wallHitY = fw->game.player.y + rc->perpendicular * rc->rayDirY;
+	if (rc->side == 0)
+		wallX = wallHitY - floor(wallHitY);
+	else
+		wallX = wallHitX - floor(wallHitX);
+	return (wallX);
+}
+int	get_tex_x(double wallX, t_img *texture)
+{
+	int	texX;
+
+	texX = (int)(wallX * texture->width);
+	if (texX >= texture->width)
+		texX = texture->width - 1;
+	return (texX);
 }
