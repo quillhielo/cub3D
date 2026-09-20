@@ -6,7 +6,7 @@
 /*   By: albegar2 <albegar2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/19 18:35:04 by albegar2          #+#    #+#             */
-/*   Updated: 2026/09/20 06:19:24 by albegar2         ###   ########.fr       */
+/*   Updated: 2026/09/20 07:44:28 by albegar2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,15 @@
 
 int	close_game(t_framework *fw)
 {
-    mlx_destroy_image(fw->mlx.mlx, fw->mlx.frame.img);
-    mlx_destroy_window(fw->mlx.mlx, fw->mlx.win);
-    mlx_destroy_display(fw->mlx.mlx);
-    free(fw->mlx.mlx);
+    if (fw->mlx.mlx)
+    {
+        free_game(fw);
+        mlx_destroy_image(fw->mlx.mlx, fw->mlx.frame.img);
+        mlx_destroy_window(fw->mlx.mlx, fw->mlx.win);
+        mlx_destroy_display(fw->mlx.mlx);
+        free(fw->mlx.mlx);
+    }
+    free_framework(fw);    
     exit(0);
     return (0);
 }

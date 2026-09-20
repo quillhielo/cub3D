@@ -6,7 +6,7 @@
 /*   By: albegar2 <albegar2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/21 10:33:21 by quill             #+#    #+#             */
-/*   Updated: 2026/09/20 06:29:13 by albegar2         ###   ########.fr       */
+/*   Updated: 2026/09/20 07:29:49 by albegar2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ typedef struct s_img
 	int		height;
 }	t_img;
 
-typedef struct s_images//alberto
+typedef struct s_images
 {
 	char	*no_path;
 	char	*so_path;
@@ -110,7 +110,7 @@ typedef struct s_keys
 	int	right;
 }	t_keys;
 
-typedef struct s_mlx//alberto
+typedef struct s_mlx
 {
 	void	*mlx;
 	void	*win;

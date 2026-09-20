@@ -6,7 +6,7 @@
 /*   By: albegar2 <albegar2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/19 18:34:57 by albegar2          #+#    #+#             */
-/*   Updated: 2026/09/20 06:12:16 by albegar2         ###   ########.fr       */
+/*   Updated: 2026/09/20 07:40:48 by albegar2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int init_exec(t_framework *fw)
 {
 	if (run_mlx(fw) == 1)
 		return (1);
-    return (0);
+	return (0);
 }
 int run_mlx(t_framework *fw)
 {
@@ -67,4 +67,10 @@ int load_all_textures(t_framework *fw)
 }
 
 
-
+void	free_game(t_framework *fw)
+{
+	mlx_destroy_image(fw->mlx.mlx, fw->game.images.ea_img.img);
+	mlx_destroy_image(fw->mlx.mlx, fw->game.images.no_img.img);
+	mlx_destroy_image(fw->mlx.mlx, fw->game.images.so_img.img);
+	mlx_destroy_image(fw->mlx.mlx, fw->game.images.we_img.img);
+}
