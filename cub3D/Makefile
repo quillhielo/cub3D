@@ -6,7 +6,7 @@
 #    By: albegar2 <albegar2@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/07/19 16:50:54 by quill             #+#    #+#              #
-#    Updated: 2026/09/20 08:30:29 by albegar2         ###   ########.fr        #
+#    Updated: 2026/09/20 09:48:13 by albegar2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,8 @@ SRC = $(SRCDIR)/main.c \
 		$(SRCDIR)/exec/rc_utils.c \
 		$(SRCDIR)/exec/init_exec.c \
 		$(SRCDIR)/exec/exec_utils.c \
-		$(SRCDIR)/exec/mlx_utils.c 
+		$(SRCDIR)/exec/mlx_utils.c \
+		$(SRCDIR)/exec/rc_loop.c
 		
 OBJS = $(patsubst $(SRCDIR)/%.c, $(OBJDIR)/%.o, $(SRC))
 

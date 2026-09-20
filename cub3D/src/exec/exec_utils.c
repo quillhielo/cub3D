@@ -6,7 +6,7 @@
 /*   By: albegar2 <albegar2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/19 18:35:20 by albegar2          #+#    #+#             */
-/*   Updated: 2026/09/20 08:29:33 by albegar2         ###   ########.fr       */
+/*   Updated: 2026/09/20 09:37:53 by albegar2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ int	load_texture(t_framework *fw, char *path, t_img *img)
 		return (1);
 	return (0);
 }
+
 int	load_all_textures(t_framework *fw)
 {
 	if (load_texture(fw, fw->game.images.no_path, &fw->game.images.no_img))
@@ -64,7 +65,8 @@ int	load_all_textures(t_framework *fw)
 		return (1);
 	return (0);
 }
-int nowall(t_framework *fw, double new_x, double new_y)
+
+int	nowall(t_framework *fw, double new_x, double new_y)
 {
 	if (is_walkable(fw->game.map.grid[(int)new_y][(int)new_x]))
 		return (0);

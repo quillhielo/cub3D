@@ -6,7 +6,7 @@
 /*   By: albegar2 <albegar2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/21 10:33:21 by quill             #+#    #+#             */
-/*   Updated: 2026/09/20 08:29:28 by albegar2         ###   ########.fr       */
+/*   Updated: 2026/09/20 10:07:03 by albegar2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,6 +133,13 @@ typedef struct s_raycast
 	double		sidedist_x;
 	double		sidedist_y;
 	double		perpendicular;
+	int			line_height;
+	int			draw_start;
+	int			draw_end;
+	double		wallx;
+	double 		step;
+	double 		texpos;
+	double		ray_angle;
 }	t_raycast;
 
 typedef struct s_framework
@@ -179,7 +186,6 @@ void	free_framework(t_framework *fw);
 int 	init_exec(t_framework *fw);
 int		init_mlx(t_framework *fw);
 int		run_mlx(t_framework *fw);
-void	put_pixel(t_framework *fw, int x, int y, int color);
 int		render_frame(t_framework *fw);
 int		close_game(t_framework *fw);
 int		key_press(int keycode, t_framework *fw);
@@ -191,10 +197,12 @@ int		load_texture(t_framework *fw, char *path, t_img *img);
 int 	load_all_textures(t_framework *fw);
 t_img	*get_wall_texture(t_framework *fw, t_raycast *rc);
 void	free_game(t_framework *fw);
+void	put_pixel(t_framework *fw, int x, int y, int color);
 void	drawing_pixels(t_framework *fw, int x, int y);
 //RAYCASTING
 void	render_raycasting(t_framework *fw);
-void	fisheye(t_raycast *rc);
+void	calculations(t_framework *fw, t_raycast *rc, t_img *img);
+void	fisheye(t_raycast *rc, t_framework *fw);
 int		dda_loop(t_framework *fw, t_raycast *rc);
 void	init_raycasting(t_framework *fw, int col, t_raycast *rc);
 void	cast_ray(t_framework *fw, int col);
@@ -204,5 +212,7 @@ int		get_tex_x(double wallX, t_img *texture);
 int		get_tex_pixel(t_img *texture, int x, int y);
 void	update_pos(t_framework *fw, double new_x, double new_y);
 void	update_rot(t_framework *fw);
+void	update_dist(t_framework *fw, t_raycast *rc);
+void	check_sidedist(t_raycast *rc);
 
 #endif
