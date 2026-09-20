@@ -6,7 +6,7 @@
 /*   By: albegar2 <albegar2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/19 18:35:14 by albegar2          #+#    #+#             */
-/*   Updated: 2026/09/19 23:36:47 by albegar2         ###   ########.fr       */
+/*   Updated: 2026/09/20 04:41:18 by albegar2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,11 @@ void	cast_ray(t_framework *fw, int col)
 	t_raycast rc;
 	
 	init_raycasting(fw, col, &rc);
-	dda_loop(fw, &rc);
-	fisheye(&rc);
-	draw_column(fw, &rc, col);
+	if (!dda_loop(fw, &rc))
+	{
+		fisheye(&rc);
+		draw_column(fw, &rc, col);
+	}
 }
 
 void	draw_column(t_framework *fw, t_raycast *rc, int col)
@@ -35,7 +37,7 @@ void	draw_column(t_framework *fw, t_raycast *rc, int col)
 	y = drawStart;
 	while (y < drawEnd)
 	{
-		put_pixel(fw, col, y, 0xFFFFFF);
+		put_pixel(fw, col, y, 0xFF0000);
 		y++;
 	}
 }
@@ -76,7 +78,7 @@ void		init_raycasting(t_framework *fw, int col, t_raycast *rc)
 	return;
 }
 
-void	dda_loop(t_framework *fw, t_raycast *rc)
+int	dda_loop(t_framework *fw, t_raycast *rc)
 {
 	int wall;
 
@@ -102,12 +104,13 @@ void	dda_loop(t_framework *fw, t_raycast *rc)
 				rc->mapX--;
 		}
 		if (rc->mapY < 0 || rc->mapY >= fw->game.map.height)
-			return;
+			return (1);
 		if (rc->mapX < 0 || rc->mapX >= ft_strlen(fw->game.map.grid[rc->mapY]))
-			return;	
+			return (1);	
 		if (fw->game.map.grid[rc->mapY][rc->mapX] == '1')
 			wall = 1;
 	}
+	return (0);
 }
 
 void	fisheye(t_raycast *rc)

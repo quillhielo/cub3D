@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: quill <quill@student.42.fr>                +#+  +:+       +#+        */
+/*   By: albegar2 <albegar2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/26 12:30:33 by quill             #+#    #+#             */
-/*   Updated: 2026/09/01 11:16:14 by quill            ###   ########.fr       */
+/*   Updated: 2026/09/19 23:47:10 by albegar2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,9 @@ void	check_player(t_framework *fw)
 				if (player > 0)
 					error_message("Incorrect player number", fw);
 				player++;
-				fw->game.player.x = j;
-				fw->game.player.y = i;
+				//+ 0.5 to center player in cell
+				fw->game.player.x = j + 0.5;
+				fw->game.player.y = i + 0.5;
 				fw->game.player.angle = spawn_angle(fw->map[i][j]);
 			}
 			j++;

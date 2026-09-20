@@ -6,7 +6,7 @@
 /*   By: albegar2 <albegar2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/21 10:33:21 by quill             #+#    #+#             */
-/*   Updated: 2026/09/19 23:37:27 by albegar2         ###   ########.fr       */
+/*   Updated: 2026/09/20 05:09:59 by albegar2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@
 # define WIDTH	3840
 # define HEIGHT	2160
 # define BLOCK	64
+# define ROT_SPEED 0.05
+# define MOVE_SPEED 0.05
 
 typedef enum e_line_type
 {
@@ -92,13 +94,23 @@ typedef struct s_game
 	t_player	player;
 }	t_game;
 
+typedef struct s_keys
+{
+	int	w;
+	int	a;
+	int s;
+	int	d;
+	int	left;
+	int	right;
+}	t_keys;
+
 typedef struct s_mlx//alberto
 {
 	void	*mlx;
 	void	*win;
-
+	
 	t_img	frame;
-
+	t_keys	keys;
 }	t_mlx;
 
 typedef struct s_raycast
@@ -161,14 +173,16 @@ int 	init_exec(t_framework *fw);
 int		init_mlx(t_framework *fw);
 int		run_mlx(t_framework *fw);
 void	put_pixel(t_framework *fw, int x, int y, int color);
-void	render_frame(t_framework *fw);
+int		render_frame(t_framework *fw);
 int		close_game(t_framework *fw);
 int		key_press(int keycode, t_framework *fw);
+int 	key_release(int keycode, t_framework *fw);
 int		rgb_to_int(t_color color);
+void    move_player(t_framework *fw);
 //RAYCASTING
 void	render_raycasting(t_framework *fw);
 void	fisheye(t_raycast *rc);
-void	dda_loop(t_framework *fw, t_raycast *rc);
+int		dda_loop(t_framework *fw, t_raycast *rc);
 void	init_raycasting(t_framework *fw, int col, t_raycast *rc);
 void	cast_ray(t_framework *fw, int col);
 void	draw_column(t_framework *fw, t_raycast *rc, int col);
