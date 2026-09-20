@@ -6,7 +6,7 @@
 /*   By: albegar2 <albegar2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/19 18:35:14 by albegar2          #+#    #+#             */
-/*   Updated: 2026/09/20 07:23:36 by albegar2         ###   ########.fr       */
+/*   Updated: 2026/09/20 08:33:37 by albegar2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	cast_ray(t_framework *fw, int col)
 {
-	t_raycast rc;
-	
+	t_raycast	rc;
+
 	init_raycasting(fw, col, &rc);
 	if (!dda_loop(fw, &rc))
 	{
@@ -34,34 +34,34 @@ int	get_tex_pixel(t_img *texture, int x, int y)
 
 void	draw_column(t_framework *fw, t_raycast *rc, int col)
 {
-	int lineHeight;
-	int	drawStart;
-	int	drawEnd;
-	int	texY;
-	int	texX;
+	int	line_height;
+	int	draw_start;
+	int	draw_end;
+	int	tex_y;
+	int	tex_x;
 	int y;
 	int color;
-	double wallX;
+	double wallx;
 	double step;
-	double texPos;
+	double texpos;
 	t_img	*img;
 	
-	lineHeight = (double)HEIGHT / rc->perpendicular;
-	drawStart = (HEIGHT / 2) - (lineHeight / 2);
-	drawEnd = (HEIGHT / 2) + (lineHeight / 2);
+	line_height = (double)HEIGHT / rc->perpendicular;
+	draw_start = (HEIGHT / 2) - (line_height / 2);
+	draw_end = (HEIGHT / 2) + (line_height / 2);
 	img = get_wall_texture(fw, rc);
-	step = (double)img->height / lineHeight;
-	texPos = (drawStart - HEIGHT / 2 + lineHeight / 2) * step;
-	wallX = get_wall_x(fw, rc);
-	texX = get_tex_x(wallX, img);
-	y = drawStart;
-	while (y < drawEnd)
+	step = (double)img->height / line_height;
+	texpos = (draw_start - HEIGHT / 2 + line_height / 2) * step;
+	wallx = get_wall_x(fw, rc);
+	tex_x = get_tex_x(wallx, img);
+	y = draw_start;
+	while (y < draw_end)
 	{
-		texY = (int)texPos;
-		color = get_tex_pixel(img, texX, texY);
+		tex_y = (int)texpos;
+		color = get_tex_pixel(img, tex_x, tex_y);
 		put_pixel(fw, col, y, color);
 		y++;
-		texPos += step;
+		texpos += step;
 	}
 }
 
@@ -72,32 +72,32 @@ void		init_raycasting(t_framework *fw, int col, t_raycast *rc)
 	
 	frac = (double)col / WIDTH;
 	rayAngle = (fw->game.player.angle - FOV / 2) + (frac * FOV); 
-	rc->rayDirX = cos(rayAngle);
-	rc->rayDirY = sin(rayAngle);
-	if (rc->rayDirX == 0)
-   		rc->rayDirX = 0.00001;
-	if (rc->rayDirY == 0)
-    	rc->rayDirY = 0.00001;
-	rc->deltaDistX = fabs(1 / rc->rayDirX);
-	rc->deltaDistY = fabs(1 / rc->rayDirY);
-	rc->mapX = (int)fw->game.player.x;
-	rc->mapY = (int)fw->game.player.y;
-	if (rc->rayDirX >= 0)
-		rc->stepX = +1;
+	rc->raydir_x = cos(rayAngle);
+	rc->raydir_y = sin(rayAngle);
+	if (rc->raydir_x == 0)
+		rc->raydir_x = 0.00001;
+	if (rc->raydir_y == 0)
+		rc->raydir_y = 0.00001;
+	rc->deltadist_x = fabs(1 / rc->raydir_x);
+	rc->deltadist_y = fabs(1 / rc->raydir_y);
+	rc->map_x = (int)fw->game.player.x;
+	rc->map_y = (int)fw->game.player.y;
+	if (rc->raydir_x >= 0)
+		rc->step_x = +1;
 	else
-		rc->stepX = -1;
-	if (rc->rayDirY >= 0)
-		rc->stepY = +1;
+		rc->step_x = -1;
+	if (rc->raydir_y >= 0)
+		rc->step_y = +1;
 	else
-		rc->stepY = -1;
-	if (rc->stepX == +1)
-		rc->sideDistX = (((rc->mapX + 1) - fw->game.player.x) *rc->deltaDistX);
+		rc->step_y = -1;
+	if (rc->step_x == +1)
+		rc->sidedist_x = (((rc->map_x + 1) - fw->game.player.x) *rc->deltadist_x);
 	else
-		rc->sideDistX = ((fw->game.player.x - rc->mapX) * rc->deltaDistX);
-	if (rc->stepY == +1)
-		rc->sideDistY = (((rc->mapY + 1) - fw->game.player.y) *rc->deltaDistY);
+		rc->sidedist_x = ((fw->game.player.x - rc->map_x) * rc->deltadist_x);
+	if (rc->step_y == +1)
+		rc->sidedist_y = (((rc->map_y + 1) - fw->game.player.y) *rc->deltadist_y);
 	else
-		rc->sideDistY = ((fw->game.player.y - rc->mapY) * rc->deltaDistY);
+		rc->sidedist_y = ((fw->game.player.y - rc->map_y) * rc->deltadist_y);
 	return;
 }
 
@@ -108,62 +108,30 @@ int	dda_loop(t_framework *fw, t_raycast *rc)
 	wall = 0;
 	while (!wall)
 	{
-		if (rc->sideDistX > rc->sideDistY)
+		if (rc->sidedist_x > rc->sidedist_y)
 		{
-			rc->sideDistY = rc->deltaDistY + rc->sideDistY;
+			rc->sidedist_y = rc->deltadist_y + rc->sidedist_y;
 			rc->side = 1;
-			if (rc->stepY == 1)
-				rc->mapY++;
+			if (rc->step_y == 1)
+				rc->map_y++;
 			else
-				rc->mapY--;
+				rc->map_y--;
 		}
 		else
 		{
-			rc->sideDistX = rc->deltaDistX + rc->sideDistX;
+			rc->sidedist_x = rc->deltadist_x + rc->sidedist_x;
 			rc->side = 0;
-			if (rc->stepX == 1)
-				rc->mapX++;
+			if (rc->step_x == 1)
+				rc->map_x++;
 			else
-				rc->mapX--;
+				rc->map_x--;
 		}
-		if (rc->mapY < 0 || rc->mapY >= fw->game.map.height)
+		if (rc->map_y < 0 || rc->map_y >= fw->game.map.height)
 			return (1);
-		if (rc->mapX < 0 || rc->mapX >= ft_strlen(fw->game.map.grid[rc->mapY]))
+		if (rc->map_x < 0 || rc->map_x >= ft_strlen(fw->game.map.grid[rc->map_y]))
 			return (1);	
-		if (fw->game.map.grid[rc->mapY][rc->mapX] == '1')
+		if (fw->game.map.grid[rc->map_y][rc->map_x] == '1')
 			wall = 1;
 	}
 	return (0);
-}
-
-void	fisheye(t_raycast *rc)
-{
-	if (rc->side == 0)
-		rc->perpendicular = rc->sideDistX - rc->deltaDistX;
-	else
-		rc->perpendicular = rc->sideDistY - rc->deltaDistY;
-}
-
-double	get_wall_x(t_framework *fw, t_raycast *rc)
-{
-	double	wallHitX;
-	double	wallHitY;
-	double	wallX;
-
-	wallHitX = fw->game.player.x + rc->perpendicular * rc->rayDirX;
-	wallHitY = fw->game.player.y + rc->perpendicular * rc->rayDirY;
-	if (rc->side == 0)
-		wallX = wallHitY - floor(wallHitY);
-	else
-		wallX = wallHitX - floor(wallHitX);
-	return (wallX);
-}
-int	get_tex_x(double wallX, t_img *texture)
-{
-	int	texX;
-
-	texX = (int)(wallX * texture->width);
-	if (texX >= texture->width)
-		texX = texture->width - 1;
-	return (texX);
 }

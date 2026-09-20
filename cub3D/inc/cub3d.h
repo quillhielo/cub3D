@@ -6,7 +6,7 @@
 /*   By: albegar2 <albegar2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/21 10:33:21 by quill             #+#    #+#             */
-/*   Updated: 2026/09/20 07:29:49 by albegar2         ###   ########.fr       */
+/*   Updated: 2026/09/20 08:29:28 by albegar2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,16 +122,16 @@ typedef struct s_mlx
 typedef struct s_raycast
 {
 	int			side;
-	int			mapX;
-	int			mapY;
-	int			stepX;
-	int			stepY;
-	double		rayDirX;
-	double		rayDirY;
-	double		deltaDistX;
-	double		deltaDistY;
-	double		sideDistX;
-	double		sideDistY;
+	int			map_x;
+	int			map_y;
+	int			step_x;
+	int			step_y;
+	double		raydir_x;
+	double		raydir_y;
+	double		deltadist_x;
+	double		deltadist_y;
+	double		sidedist_x;
+	double		sidedist_y;
 	double		perpendicular;
 }	t_raycast;
 
@@ -174,6 +174,7 @@ void	check_player(t_framework *fw);
 void	check_cell(t_framework *fw, int i, int j);
 void	check_neighbor(t_framework *fw, int i, int j);
 int		is_walkable(char c);
+void	free_framework(t_framework *fw);
 //exec
 int 	init_exec(t_framework *fw);
 int		init_mlx(t_framework *fw);
@@ -184,11 +185,13 @@ int		close_game(t_framework *fw);
 int		key_press(int keycode, t_framework *fw);
 int 	key_release(int keycode, t_framework *fw);
 int		rgb_to_int(t_color color);
-void    move_player(t_framework *fw);
+void	move_player(t_framework *fw, double dir_x, double dir_y);
 int 	nowall(t_framework *fw, double newX, double newY);
 int		load_texture(t_framework *fw, char *path, t_img *img);
 int 	load_all_textures(t_framework *fw);
 t_img	*get_wall_texture(t_framework *fw, t_raycast *rc);
+void	free_game(t_framework *fw);
+void	drawing_pixels(t_framework *fw, int x, int y);
 //RAYCASTING
 void	render_raycasting(t_framework *fw);
 void	fisheye(t_raycast *rc);
@@ -199,5 +202,7 @@ void	draw_column(t_framework *fw, t_raycast *rc, int col);
 double	get_wall_x(t_framework *fw, t_raycast *rc);
 int		get_tex_x(double wallX, t_img *texture);
 int		get_tex_pixel(t_img *texture, int x, int y);
+void	update_pos(t_framework *fw, double new_x, double new_y);
+void	update_rot(t_framework *fw);
 
 #endif
