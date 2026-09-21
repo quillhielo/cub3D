@@ -194,7 +194,7 @@ int		key_press(int keycode, t_framework *fw);
 int 	key_release(int keycode, t_framework *fw);
 int		rgb_to_int(t_color color);
 void	move_player(t_framework *fw, double dir_x, double dir_y);
-int 	nowall(t_framework *fw, double newX, double newY);
+int 	nowall(t_framework *fw);
 int		load_texture(t_framework *fw, char *path, t_img *img);
 int 	load_all_textures(t_framework *fw);
 t_img	*get_wall_texture(t_framework *fw, t_raycast *rc);

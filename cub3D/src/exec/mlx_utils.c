@@ -14,9 +14,9 @@
 
 void	update_pos(t_framework *fw)
 {
-	if (!nowall(fw, fw->game.new_y, fw->game.new_y))
+	if (!nowall(fw))
 	{
-		fw->game.player.x = fw->game.new_y;
+		fw->game.player.x = fw->game.new_x;
 		fw->game.player.y = fw->game.new_y;
 	}
 }
