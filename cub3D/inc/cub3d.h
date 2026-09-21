@@ -32,11 +32,11 @@
 # define ESC_KEY 65307
 # define FOV 	1.0471975512
 # define PI		3.14159265359
-# define WIDTH	3840
-# define HEIGHT	2160
+# define WIDTH	1000
+# define HEIGHT	500
 # define BLOCK	64
-# define ROT_SPEED 0.08
-# define MOVE_SPEED 0.08
+# define ROT_SPEED 0.05
+# define MOVE_SPEED 0.03
 
 typedef enum e_line_type
 {
@@ -98,6 +98,8 @@ typedef struct s_game
 	t_color		floor;
 	t_color		ceiling;
 	t_player	player;
+	double		new_x;
+	double		new_y;
 }	t_game;
 
 typedef struct s_keys
@@ -210,7 +212,7 @@ void	draw_column(t_framework *fw, t_raycast *rc, int col);
 double	get_wall_x(t_framework *fw, t_raycast *rc);
 int		get_tex_x(double wallX, t_img *texture);
 int		get_tex_pixel(t_img *texture, int x, int y);
-void	update_pos(t_framework *fw, double new_x, double new_y);
+void	update_pos(t_framework *fw);
 void	update_rot(t_framework *fw);
 void	update_dist(t_framework *fw, t_raycast *rc);
 void	check_sidedist(t_raycast *rc);

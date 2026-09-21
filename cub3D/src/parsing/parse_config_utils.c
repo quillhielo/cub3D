@@ -114,9 +114,15 @@ void	is_valid_colors(char **colors, t_framework *fw)
 			j++;
 		if (colors[i][j] != '\0' || count == 0 || ft_atoi(colors[i]) < 0
 			|| ft_atoi(colors[i]) > 255)
+		{
+			ft_free_matrix(colors);
 			error_message("Invalid color format", fw);
+		}
 		i++;
 	}
 	if (i != 3)
+	{
+		ft_free_matrix(colors);
 		error_message("Invalid color format", fw);
+	}
 }

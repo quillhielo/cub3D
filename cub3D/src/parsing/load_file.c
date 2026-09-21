@@ -59,10 +59,10 @@ void	load_file(int argc, char **argv, t_framework *fw)
 		error_message("Incorrect amount of arguments", 0);
 	len = ft_strlen(argv[1]);
 	if (len < 5 || ft_strncmp(argv[1] + len - 4, ".cub", 4) != 0)
-		error_message("Invalid file extension. Expected .cub", 0);
+		error_message("Invalid file extension. Expected .cub", fw);
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
-		error_message("Failed to open file", 0);
+		error_message("Failed to open file", fw);
 	get_content(fd, fw);
 	close(fd);
 	parse_config(fw);
