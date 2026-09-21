@@ -68,7 +68,8 @@ int	load_all_textures(t_framework *fw)
 
 int	nowall(t_framework *fw)
 {
-	if (is_walkable(fw->game.map.grid[(int)fw->game.new_y][(int)fw->game.new_x]))
+	if (is_walkable(fw->game.map.grid[(int)fw->game.new_y]
+			[(int)fw->game.new_x]))
 		return (0);
 	return (1);
 }
