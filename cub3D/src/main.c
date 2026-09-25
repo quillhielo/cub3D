@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: quill <quill@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/09/01 10:38:49 by quill             #+#    #+#             */
-/*   Updated: 2026/09/01 11:13:34 by quill            ###   ########.fr       */
+/*   Created: 2026/09/25 11:49:06 by quill             #+#    #+#             */
+/*   Updated: 2026/09/25 11:49:07 by quill            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,7 @@ int	main(int argc, char **argv)
 	fw = parser(argc, argv);
 	if (!fw)
 		return (0);
+	if (init_exec(fw) != 0)
+		return (1);
 	return (0);
 }

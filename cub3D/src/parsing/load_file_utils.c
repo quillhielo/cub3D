@@ -6,7 +6,7 @@
 /*   By: quill <quill@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/24 18:11:37 by quill             #+#    #+#             */
-/*   Updated: 2026/09/01 11:25:12 by quill            ###   ########.fr       */
+/*   Updated: 2026/09/25 11:11:38 by quill            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,6 @@ int	is_config_line(char *line)
 	if (ft_strncmp(line, "NO ", 3) == 0 || ft_strncmp(line, "SO ", 3) == 0
 		|| ft_strncmp(line, "WE ", 3) == 0 || ft_strncmp(line, "EA ", 3) == 0
 		|| ft_strncmp(line, "F ", 2) == 0 || ft_strncmp(line, "C ", 2) == 0)
-		return (1);
-	return (0);
-}
-
-int	is_map_line(char *line)
-{
-	if (ft_strlen(line) > 0 && !is_config_line(line))
 		return (1);
 	return (0);
 }
@@ -68,19 +61,29 @@ void	copy_map(t_framework *fw, int start_index)
 	}
 }
 
+int	count_config_lines(t_framework *fw, int end_index)
+{
+	int	i;
+	int	count;
+
+	i = 0;
+	count = 0;
+	while (fw->content[i] && i < end_index)
+	{
+		if (is_config_line(fw->content[i]))
+			count++;
+		i++;
+	}
+	return (count);
+}
+
 void	copy_config(t_framework *fw, int end_index)
 {
 	int	i;
 	int	j;
 
 	i = 0;
-	j = 0;
-	while (fw->content[i] && i < end_index)
-	{
-		if (is_config_line(fw->content[i]))
-			j++;
-		i++;
-	}
+	j = count_config_lines(fw, end_index);
 	fw->config = ft_calloc(j + 1, sizeof(char *));
 	if (!fw->config)
 		error_message("Malloc failed", fw);

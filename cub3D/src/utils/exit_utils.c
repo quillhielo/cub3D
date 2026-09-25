@@ -12,6 +12,21 @@
 
 #include "cub3d.h"
 
+void	ft_free_matrix(char **matrix)
+{
+	int	index;
+
+	if (!matrix)
+		return ;
+	index = 0;
+	while (matrix[index])
+	{
+		free(matrix[index]);
+		index++;
+	}
+	free(matrix);
+}
+
 void	free_framework(t_framework *fw)
 {
 	if (!fw)

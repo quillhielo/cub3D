@@ -6,11 +6,18 @@
 /*   By: quill <quill@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/24 18:08:38 by quill             #+#    #+#             */
-/*   Updated: 2026/09/01 11:12:14 by quill            ###   ########.fr       */
+/*   Updated: 2026/09/25 11:11:20 by quill            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+int	is_map_line(char *line)
+{
+	if (ft_strlen(line) > 0 && !is_config_line(line))
+		return (1);
+	return (0);
+}
 
 void	split_content(t_framework *fw)
 {
@@ -59,10 +66,10 @@ void	load_file(int argc, char **argv, t_framework *fw)
 		error_message("Incorrect amount of arguments", 0);
 	len = ft_strlen(argv[1]);
 	if (len < 5 || ft_strncmp(argv[1] + len - 4, ".cub", 4) != 0)
-		error_message("Invalid file extension. Expected .cub", 0);
+		error_message("Invalid file extension. Expected .cub", fw);
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
-		error_message("Failed to open file", 0);
+		error_message("Failed to open file", fw);
 	get_content(fd, fw);
 	close(fd);
 	parse_config(fw);
