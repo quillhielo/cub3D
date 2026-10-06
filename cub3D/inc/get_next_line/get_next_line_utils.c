@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acarbajo <acarbajo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: quill <quill@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 17:15:43 by acarbajo          #+#    #+#             */
-/*   Updated: 2025/08/12 14:09:26 by acarbajo         ###   ########.fr       */
+/*   Updated: 2026/09/25 11:47:07 by quill            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-
 
 char	*ft_strchr(const char *s, int c)
 {

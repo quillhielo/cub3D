@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: quill <quill@student.42.fr>                +#+  +:+       +#+        */
+/*   By: albegar2 <albegar2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 17:01:42 by acarbajo          #+#    #+#             */
-/*   Updated: 2026/08/05 17:32:15 by quill            ###   ########.fr       */
+/*   Updated: 2026/03/26 16:19:17 by albegar2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,5 @@ char	*ft_strtrim(char const *s1, char const *set);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 int		ft_tolower(int c);
 int		ft_toupper(int c);
-void    ft_free_matrix(char **matrix);
 
 #endif

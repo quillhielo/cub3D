@@ -6,7 +6,7 @@
 #    By: quill <quill@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/07/19 16:50:54 by quill             #+#    #+#              #
-#    Updated: 2026/09/01 13:08:26 by quill            ###   ########.fr        #
+#    Updated: 2026/09/25 11:09:20 by quill            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,14 +15,29 @@ NAME = cub3d
 CC = gcc
 
 CFLAGS = -Wall -Wextra -Werror -I inc -I inc/libft -I inc/get_next_line -I mlx
-LFLAGS = -L inc/get_next_line -lget_next_line -L inc/libft -lft -L mlx -lmlx -lXext -lX11
+LFLAGS = -L inc/get_next_line -lget_next_line -L inc/libft -lft -L mlx -lm -lmlx -lXext -lX11
 
 SRCDIR = src
 OBJDIR = objs
 
-SRC = $(SRCDIR)/main.c $(SRCDIR)/parsing/load_file.c $(SRCDIR)/parsing/load_file_utils.c $(SRCDIR)/utils/exit_utils.c \
-		$(SRCDIR)/parsing/parse_config.c $(SRCDIR)/parsing/parse_config_utils.c $(SRCDIR)/parsing/parse_map_utils.c $(SRCDIR)/parsing/parse_map.c
-
+SRC = $(SRCDIR)/main.c \
+		$(SRCDIR)/parsing/load_file.c \
+		$(SRCDIR)/parsing/parse_config.c \
+		$(SRCDIR)/parsing/parse_colors.c \
+		$(SRCDIR)/parsing/parse_texture.c \
+		$(SRCDIR)/parsing/parse_map.c \
+		$(SRCDIR)/parsing/parse_map_utils.c \
+    	$(SRCDIR)/parsing/load_file_utils.c \
+		$(SRCDIR)/parsing/check_player.c \
+   	 	$(SRCDIR)/utils/exit_utils.c \
+   		$(SRCDIR)/exec/mlx_exec.c \
+		$(SRCDIR)/exec/raycasting.c \
+		$(SRCDIR)/exec/rc_utils.c \
+		$(SRCDIR)/exec/init_exec.c \
+		$(SRCDIR)/exec/exec_utils.c \
+		$(SRCDIR)/exec/mlx_utils.c \
+		$(SRCDIR)/exec/rc_loop.c
+		
 OBJS = $(patsubst $(SRCDIR)/%.c, $(OBJDIR)/%.o, $(SRC))
 
 LIBFT_DIR = inc/libft
