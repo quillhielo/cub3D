@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: quill <quill@student.42.fr>                +#+  +:+       +#+        */
+/*   By: albegar2 <albegar2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/07/21 10:33:21 by quill             #+#    #+#             */
-/*   Updated: 2026/09/25 11:46:08 by quill            ###   ########.fr       */
+/*   Created: 2026/10/06 20:47:42 by albegar2          #+#    #+#             */
+/*   Updated: 2026/10/06 20:49:08 by albegar2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 # define CUB3D_H
 
 # include "get_next_line.h"
-# include "libft.h"  //libft functions (permitted?)
-# include "mlx.h"    //mlx functions
-# include <fcntl.h>  //open
-# include <math.h>   //sin, cos, tan, sqrt
-# include <stdio.h>  //printf
-# include <stdlib.h> //malloc, free, exit
-# include <string.h> //strerror
-# include <unistd.h> //read, write, close
+# include "libft.h"
+# include "mlx.h"
+# include <fcntl.h>
+# include <math.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <string.h>
+# include <unistd.h>
 
 # define W_KEY 119
 # define S_KEY 115
@@ -32,8 +32,8 @@
 # define ESC_KEY 65307
 # define FOV 1.0471975512
 # define PI 3.14159265359
-# define WIDTH 1000
-# define HEIGHT 500
+# define WIDTH 2560
+# define HEIGHT 1440
 # define BLOCK 64
 # define ROT_SPEED 0.05
 # define MOVE_SPEED 0.03
