@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albegar2 <albegar2@student.42.fr>          +#+  +:+       +#+        */
+/*   By: acarbajo <acarbajo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/06 20:47:42 by albegar2          #+#    #+#             */
-/*   Updated: 2026/10/06 20:49:08 by albegar2         ###   ########.fr       */
+/*   Updated: 2026/10/06 21:37:02 by acarbajo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@
 # define ESC_KEY 65307
 # define FOV 1.0471975512
 # define PI 3.14159265359
-# define WIDTH 2560
-# define HEIGHT 1440
+# define WIDTH 1400
+# define HEIGHT 700
 # define BLOCK 64
 # define ROT_SPEED 0.05
 # define MOVE_SPEED 0.03

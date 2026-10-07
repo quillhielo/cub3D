@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: albegar2 <albegar2@student.42.fr>          +#+  +:+       +#+         #
+#    By: acarbajo <acarbajo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/07/19 16:50:54 by quill             #+#    #+#              #
-#    Updated: 2026/10/06 20:48:57 by albegar2         ###   ########.fr        #
+#    Updated: 2026/10/06 21:42:22 by acarbajo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = cub3d
 
-CC = gcc
+CC = cc
 
 CFLAGS = -Wall -Wextra -Werror -I inc -I inc/libft -I inc/get_next_line -I mlx
 LFLAGS = -L inc/get_next_line -lget_next_line -L inc/libft -lft -L mlx -lm -lmlx -lXext -lX11
