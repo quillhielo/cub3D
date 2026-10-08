@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albegar2 <albegar2@student.42.fr>          +#+  +:+       +#+        */
+/*   By: quill <quill@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/19 18:35:14 by albegar2          #+#    #+#             */
-/*   Updated: 2026/10/06 20:49:14 by albegar2         ###   ########.fr       */
+/*   Updated: 2026/10/08 12:35:17 by quill            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,7 @@ void	draw_column(t_framework *fw, t_raycast *rc, int col)
 
 	img = get_wall_texture(fw, rc);
 	calculations(fw, rc, img);
-	tex_x = get_tex_x(rc->wallx, img);
-	if ((rc->side == 0 && rc->raydir_x > 0) || (rc->side == 1
-			&& rc->raydir_y < 0))
-		tex_x = img->width - tex_x - 1;
+	tex_x = get_tex_x(rc->wallx, img, rc);
 	y = rc->draw_start;
 	while (y < rc->draw_end)
 	{

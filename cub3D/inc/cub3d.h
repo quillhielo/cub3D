@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acarbajo <acarbajo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: quill <quill@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/06 20:47:42 by albegar2          #+#    #+#             */
-/*   Updated: 2026/10/06 21:37:02 by acarbajo         ###   ########.fr       */
+/*   Updated: 2026/10/08 12:35:46 by quill            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,7 +154,7 @@ typedef struct s_framework
 
 void			ft_free_matrix(char **matrix);
 void			error_message(char *str, t_framework *fw);
-void			load_file(int argc, char **argv, t_framework *fw);
+void			load_file(char **argv, t_framework *fw);
 int				is_map_line(char *line);
 int				is_config_line(char *line);
 int				find_map_start(t_framework *fw);
@@ -206,7 +206,7 @@ void			init_raycasting(t_framework *fw, int col, t_raycast *rc);
 void			cast_ray(t_framework *fw, int col);
 void			draw_column(t_framework *fw, t_raycast *rc, int col);
 double			get_wall_x(t_framework *fw, t_raycast *rc);
-int				get_tex_x(double wallX, t_img *texture);
+int				get_tex_x(double wallX, t_img *texture, t_raycast *rc);
 int				get_tex_pixel(t_img *texture, int x, int y);
 void			update_pos(t_framework *fw);
 void			update_rot(t_framework *fw);

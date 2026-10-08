@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load_file.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acarbajo <acarbajo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: quill <quill@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/24 18:08:38 by quill             #+#    #+#             */
-/*   Updated: 2026/10/06 21:01:51 by acarbajo         ###   ########.fr       */
+/*   Updated: 2026/10/08 12:23:29 by quill            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,13 +57,11 @@ void	get_content(int fd, t_framework *fw)
 	split_content(fw);
 }
 
-void	load_file(int argc, char **argv, t_framework *fw)
+void	load_file(char **argv, t_framework *fw)
 {
 	int	len;
 	int	fd;
 
-	if (argc != 2)
-		error_message("Incorrect amount of arguments", 0);
 	len = ft_strlen(argv[1]);
 	if (len < 5 || ft_strncmp(argv[1] + len - 4, ".cub", 4) != 0)
 		error_message("Invalid file extension. Expected .cub", fw);

@@ -3,14 +3,14 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: acarbajo <acarbajo@student.42.fr>          +#+  +:+       +#+         #
+#    By: quill <quill@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/07/19 16:50:54 by quill             #+#    #+#              #
-#    Updated: 2026/10/06 21:42:22 by acarbajo         ###   ########.fr        #
+#    Updated: 2026/10/08 12:17:39 by quill            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = cub3d
+NAME = cub3D
 
 CC = cc
 

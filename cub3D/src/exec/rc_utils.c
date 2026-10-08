@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rc_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albegar2 <albegar2@student.42.fr>          +#+  +:+       +#+        */
+/*   By: quill <quill@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/20 08:04:54 by albegar2          #+#    #+#             */
-/*   Updated: 2026/10/06 20:49:31 by albegar2         ###   ########.fr       */
+/*   Updated: 2026/10/08 13:31:16 by quill            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,17 @@ double	get_wall_x(t_framework *fw, t_raycast *rc)
 	return (wallx);
 }
 
-int	get_tex_x(double wallx, t_img *texture)
+int	get_tex_x(double wallx, t_img *texture, t_raycast *rc)
 {
 	int	texx;
 
 	texx = (int)(wallx * texture->width);
 	if (texx >= texture->width)
 		texx = texture->width - 1;
+	if (rc->side == 0 && rc->raydir_x < 0)
+		texx = texture->width - texx - 1;
+	if (rc->side == 1 && rc->raydir_y > 0)
+		texx = texture->width - texx - 1;
 	return (texx);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_exec.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albegar2 <albegar2@student.42.fr>          +#+  +:+       +#+        */
+/*   By: quill <quill@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/19 18:35:04 by albegar2          #+#    #+#             */
-/*   Updated: 2026/10/06 20:49:52 by albegar2         ###   ########.fr       */
+/*   Updated: 2026/10/08 12:22:03 by quill            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,9 +100,9 @@ t_img	*get_wall_texture(t_framework *fw, t_raycast *rc)
 	else
 	{
 		if (rc->raydir_y > 0)
-			return (&fw->game.images.so_img);
-		else if (rc->raydir_y < 0)
 			return (&fw->game.images.no_img);
+		else if (rc->raydir_y < 0)
+			return (&fw->game.images.so_img);
 	}
 	return (NULL);
 }

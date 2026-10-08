@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_exec.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acarbajo <acarbajo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: quill <quill@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/06 20:48:05 by albegar2          #+#    #+#             */
-/*   Updated: 2026/10/06 20:56:05 by acarbajo         ###   ########.fr       */
+/*   Updated: 2026/10/08 12:18:12 by quill            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	init_mlx(t_framework *fw)
 	fw->mlx.mlx = mlx_init();
 	if (!fw->mlx.mlx)
 		return (1);
-	fw->mlx.win = mlx_new_window(fw->mlx.mlx, WIDTH, HEIGHT, "cub3d");
+	fw->mlx.win = mlx_new_window(fw->mlx.mlx, WIDTH, HEIGHT, "cub3D");
 	fw->mlx.frame.img = mlx_new_image(fw->mlx.mlx, WIDTH, HEIGHT);
 	if (!fw->mlx.win || !fw->mlx.frame.img)
 		return (1);
